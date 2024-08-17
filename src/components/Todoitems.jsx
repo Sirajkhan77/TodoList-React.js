@@ -1,4 +1,6 @@
 // Todoitems.jsx
+import { MdDeleteForever } from "react-icons/md";
+import styles from "./input.module.css";
 function Items({ name, date, onDeleteClick }) {
   return (
     <div className="container">
@@ -12,12 +14,12 @@ function Items({ name, date, onDeleteClick }) {
               onDeleteClick(name);
             }}
           >
-            DELETE
+            <MdDeleteForever className={styles.addIcon} />
           </button>
         </div>
       </div>
     </div>
   );
 }
-
+// 7:59
 export default Items;

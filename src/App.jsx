@@ -20,6 +20,7 @@ function App() {
     );
     setSiraj(todoItemDeletor);
   };
+  // 7:20
 
   return (
     <center className="container">

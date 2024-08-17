@@ -1,15 +1,18 @@
 import { useState } from "react";
-
-// input.jsx
+import { TbDeviceIpadDown } from "react-icons/tb";
+import styles from "./input.module.css";
 function In({ onNewItem }) {
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
+
   const handleName = (event) => {
     setName(event.target.value);
   };
+
   const handleDate = (event) => {
     setDate(event.target.value);
   };
+
   const handleAddButtonClicked = () => {
     onNewItem(name, date);
     setName("");
@@ -29,12 +32,12 @@ function In({ onNewItem }) {
             value={name}
           />
         </div>
-        <div className="col-4" onChange={handleDate}>
-          <input type="date" name="date" value={date} />
+        <div className="col-4">
+          <input type="date" name="date" value={date} onChange={handleDate} />
         </div>
         <div className="col-2">
           <button className="btn btn-success" onClick={handleAddButtonClicked}>
-            ADD
+            <TbDeviceIpadDown className={styles.addIcon} />
           </button>
         </div>
       </div>

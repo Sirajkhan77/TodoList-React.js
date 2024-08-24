@@ -13,15 +13,17 @@ function In({ onNewItem }) {
     setDate(event.target.value);
   };
 
-  const handleAddButtonClicked = () => {
+  const handleAddButtonClicked = (event) => {
     onNewItem(name, date);
     setName("");
     setDate("");
+    // console.log(event);
+    event.preventDefault();
   };
-
+  // 8:16
   return (
     <div className="container text-center">
-      <div className="row">
+      <form className="row" onSubmit={handleAddButtonClicked}>
         <div className="col-6">
           <input
             type="text"
@@ -36,11 +38,11 @@ function In({ onNewItem }) {
           <input type="date" name="date" value={date} onChange={handleDate} />
         </div>
         <div className="col-2">
-          <button className="btn btn-success" onClick={handleAddButtonClicked}>
+          <button className="btn btn-success">
             <TbDeviceIpadDown className={styles.addIcon} />
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }

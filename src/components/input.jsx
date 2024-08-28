@@ -1,23 +1,18 @@
-import { useState } from "react";
+import { useContext, useRef } from "react";
 import { TbDeviceIpadDown } from "react-icons/tb";
 import styles from "./input.module.css";
-function In({ onNewItem }) {
-  const [name, setName] = useState("");
-  const [date, setDate] = useState("");
-
-  const handleName = (event) => {
-    setName(event.target.value);
-  };
-
-  const handleDate = (event) => {
-    setDate(event.target.value);
-  };
-
+import { TodoItemsContext } from "../store/todo-items-store";
+function In() {
+  const { addNewItem } = useContext(TodoItemsContext);
+  const nameUpdater = useRef();
+  const dateUpdater = useRef();
+  // 8:30
   const handleAddButtonClicked = (event) => {
-    onNewItem(name, date);
-    setName("");
-    setDate("");
-    // console.log(event);
+    let name = nameUpdater.current.value;
+    let date = dateUpdater.current.value;
+    nameUpdater.current.value = "";
+    dateUpdater.current.value = "";
+    addNewItem(name, date);
     event.preventDefault();
   };
   // 8:16
@@ -30,12 +25,11 @@ function In({ onNewItem }) {
             name="text"
             id="text"
             placeholder="Enter TODO here"
-            onChange={handleName}
-            value={name}
+            ref={nameUpdater}
           />
         </div>
         <div className="col-4">
-          <input type="date" name="date" value={date} onChange={handleDate} />
+          <input type="date" name="date" ref={dateUpdater} />
         </div>
         <div className="col-2">
           <button className="btn btn-success">

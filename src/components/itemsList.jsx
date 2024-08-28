@@ -1,10 +1,13 @@
 import styles from "./itemsList.module.css";
 import Items from "./Todoitems";
-const ListofItems = ({ khan, onDelete }) => {
+import { TodoItemsContext } from "../store/todo-items-store";
+import { useContext } from "react";
+const ListofItems = ({ onDelete }) => {
+  const { siraj } = useContext(TodoItemsContext);
   return (
     <>
       <div className={styles.items}>
-        {khan.map((x) => (
+        {siraj.map((x) => (
           <Items
             name={x.name}
             date={x.date}
